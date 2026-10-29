@@ -95,29 +95,72 @@ while True:
 
 
 
+        
         case '2':
-            os.system('clear')
-            print(":::List all registered users:::")
+            while True:
+                os.system('clear')
+                print(":::List all registered users:::")
+                print("[1]. Sort in ascending order by identification")
+                print("[2]. Sort in descending order by identification")
+                print("[3]. Sort in ascending order by lastname")
+                print("[4]. Sort in descending order by lastname")
+                print("[5]. Exit")
 
-            print ('-'*163)
-            print (f"| {'id':<15} | {'Firsname':<15} | {'Lastname':<15} | {'Mobile Phone':<15} | {'Emails':<15} | {'Genders':<15} | {'Ages':<15} | {'Salarys':<15} | {'Created':<15} |")
-            print ('-'*163)
+                option = input("Press any option [1-5]: ")
 
-            i=0
-            while i < len(ids):
-                print(f'| {ids[i]:<15} | {firtsnames[i]:<15} | {lastnames[i]:<15} | {mobile_phones[i]:<15} | {emails[i]:<15} | {genders[i]:<15} |  {ages[i]:<15}| {salarys[i]:<15} | {created_at[i]}      |')
-                print ('-'*163)
-                i += 1
+                if option == '5':
+                    break
 
-            #print(f"IDs: {ids}")
-            #print(f"Firsnames: {firtsname}")
-            #print(f"Lasnames: {lastname}")
-            #print(f"Mobile Phones: {mobile_phone}")
-            #print(f"Emails: {email}")
-            #print(f"Genders: {gender}")
-            #print(f"Created_at: {created_at}")
+                if option not in ['1', '2', '3', '4']:
+                    input("Invalid option. Press Enter to try again...")
+                    continue
 
-            any_key = input ("Press any key to back to main menu")
+                if len(ids) == 0:
+                    input("There are no registered users yet. Press Enter...")
+                    continue
+
+                # Create a list of indexes to preserve the relationship
+                # between all the user data lists.
+                indexes = list(range(len(ids)))
+
+                if option == '1':
+                    indexes.sort(key=lambda i: ids[i])
+                elif option == '2':
+                    indexes.sort(key=lambda i: ids[i], reverse=True)
+                elif option == '3':
+                    indexes.sort(key=lambda i: lastnames[i].lower())
+                elif option == '4':
+                    indexes.sort(
+                        key=lambda i: lastnames[i].lower(),
+                        reverse=True
+                    )
+
+                print()
+                print('-' * 163)
+                print(
+                    f"| {'id':<15} | {'Firsname':<15} | "
+                    f"{'Lastname':<15} | {'Mobile Phone':<15} | "
+                    f"{'Emails':<15} | {'Genders':<15} | "
+                    f"{'Ages':<15} | {'Salarys':<15} | "
+                    f"{'Created':<15} |"
+                )
+                print('-' * 163)
+
+                for i in indexes:
+                    print(
+                        f"| {ids[i]:<15} | "
+                        f"{firtsnames[i]:<15} | "
+                        f"{lastnames[i]:<15} | "
+                        f"{mobile_phones[i]:<15} | "
+                        f"{emails[i]:<15} | "
+                        f"{genders[i]:<15} | "
+                        f"{ages[i]:<15} | "
+                        f"{salarys[i]:<15} | "
+                        f"{created_at[i]!s:<15} |"
+                    )
+                    print('-' * 163)
+
+                input("Press Enter to continue...")
 
 
 
