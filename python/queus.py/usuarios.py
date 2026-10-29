@@ -13,7 +13,6 @@ def mainMenu():
     print ("[7]Show inactive users")
     print ("[8]Exit")
 
-
 ids=[]    
 firtsnames=[]
 lastnames=[]
@@ -26,8 +25,8 @@ ages=[]
 salarys=[]
 
 created_at=[]
-#Main
 
+#Main
 
 while True:
     os.system('clear')
@@ -39,17 +38,16 @@ while True:
             os.system('clear')
             print("::: Register form :::")
 
-
             while True:
                 id=input("ident number: ")
                 count = 0
                 i=0
-                while i< len(ids):
+                while i < len(ids):
                     if id == ids[i]:
                         print("identification number already exists! \n try again:::")
                         count += 1
                         break
-                    i+=1
+                    i += 1
                 if count == 0:
                     break
 
@@ -60,22 +58,20 @@ while True:
                 mobile_phone=input("Mobile Phone: ")
                 count = 0
                 i=0
-                while i< len(ids):
-                    if id == ids[i]:
+                while i < len(mobile_phones):
+                    if mobile_phone == mobile_phones[i]:
                         print("Number Phone already exists! \n try again:::")
                         count += 1
                         break
-                    i+=1
+                    i += 1
                 if count == 0:
                     break
-
 
             email=input("E-mail: ")
             gender=input("Gender [M/F/O]: ")
 
             age=input("age: ")
             salary=input("salary: ")
-
 
             ids.append(id)
             firtsnames.append(firtsname)
@@ -88,14 +84,11 @@ while True:
             ages.append(age)
             salarys.append(salary)
 
-
             created_at.append(date.today())
             print("User has been created successfully !!")
-            any_key = input ("Press any key to back to main menu")
+            any_key = input("Press any key to back to main menu")
 
-
-
-        
+       
         case '2':
             while True:
                 os.system('clear')
@@ -162,10 +155,37 @@ while True:
 
                 input("Press Enter to continue...")
 
+        case '3':
+            os.system('clear')
+            print("Search User ::: \n")
 
+            id_user = input("Enter identification number to Search: ")
+            i = 0
+            j = 0
+            while i < len(ids):
+                if id_user == ids[i]:
+                    j = 1
+                    break
+                i += 1
 
-        case '8': 
+            if j > 0:
+                print(f"Ident user: {ids[i]}")
+                print(f"Fullname: {firtsnames[i]} {lastnames[i]}")
+                print(f"Mobile phone: {mobile_phones[i]}")
+                print(f"Email: {emails[i]}")
+                print(f"Gender: {genders[i]}")
+                print(f"Age: {ages[i]}")
+                print(f"Salary: {salarys[i]}")
+                print(f"Status: {'Active' if statuses[i] else 'Inactive'}")
+                print(f"Created at: {created_at[i]}")
+            else:
+                print("Identification Number not found")
+
+            key = input("Press any key to back to main menu: ")
+        
+        case '8':
             any_key=input("bye bye. press any key... ")
             break
-        case _ :
+
+        case _:
             any_key=input("Invalid option. press any key to try again")
